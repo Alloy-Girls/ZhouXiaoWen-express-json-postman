@@ -20,8 +20,7 @@ function insertOne(req, res) {
 function readyInsertOne(itemOne) {
   var insertOne = {};
 
-  ID += 1;
-  insertOne.id = ID;
+  insertOne.id = ++ID;
   insertOne.barcode = itemOne.barcode;
   insertOne.name = itemOne.name;
   insertOne.unit = itemOne.unit;

@@ -1,29 +1,22 @@
-var fs = require('fs');
+var publicMethod = require('./public');
 
-const FILE_NAME = 'items.json';
-
-function findAll(req,res){
-  fs.readFile(FILE_NAME, "UTF-8", function (err, data) {
-    if (err) throw err;
-
-    res.status(200).json(JSON.parse(data));
-  });
+function findAll(req, res) {
+  var dataObject = publicMethod.fileOnlyRead();
+  res.status(200).json(dataObject);
 }
 
 function findOne(req, res) {
   var id = parseInt(req.params.id);
 
-  fs.readFile(FILE_NAME, "UTF-8", function (err, data) {
-    if (err) throw err;
+  var dataObject = publicMethod.fileOnlyRead();
+  var findItem = returnFindOne(id, dataObject);
 
-    var findItem = returnFindOne(id, JSON.parse(data));
-    if (findItem) {
-      res.status(200).json(findItem);
-    }
-    else {
-      res.sendStatus(404);
-    }
-  });
+  if (findItem) {
+    res.status(200).json(findItem);
+  }
+  else {
+    res.sendStatus(404);
+  }
 }
 
 function returnFindOne(id, items) {
@@ -35,6 +28,6 @@ function returnFindOne(id, items) {
 }
 
 module.exports = {
-  findOne:findOne,
-  findAll:findAll
+  findOne: findOne,
+  findAll: findAll
 };
