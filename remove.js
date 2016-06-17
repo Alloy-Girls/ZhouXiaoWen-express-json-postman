@@ -1,34 +1,30 @@
-var fs = require('fs');
+var publicMethod = require('./public');
 
-const FILE_NAME = 'items.json';
-
-function removeOne(req,res){
+function removeOne(req, res) {
   var id = parseInt(req.params.id);
+  var dataObject = publicMethod.fileOnlyRead();
+  var dataBefore = dataObject.length;
+  var notRemoveItems = returnNotRemove(id, dataObject);
 
-  fs.readFile(FILE_NAME, "UTF-8", function (err, data) {
-    if (err) throw err;
-
-    var notRemoveItems = returnNotRemove(id, JSON.parse(data));
-    if (notRemoveItems.length === JSON.parse(data).length) {
-      res.sendStatus(404);
-    }
-    else {
-      fs.writeFile(FILE_NAME, JSON.stringify(notRemoveItems), function (err) {
-        if (err)  throw err;
-        res.sendStatus(204);
-      });
-    }
-  });
+  if (notRemoveItems.length === dataBefore) {
+    res.sendStatus(404);
+  }
+  else {
+    publicMethod.fileWrite(req, res, dataObject);
+    res.sendStatus(204);
+  }
 }
+
 function returnNotRemove(id, items) {
   var notRemoveItems = items;
+
   for (var i = 0; i < items.length; i++) {
     if (id === items[i].id) {
-      notRemoveItems.splice(i,1);
+      notRemoveItems.splice(i, 1);
     }
   }
 
   return notRemoveItems;
 }
 
-module.exports = {removeOne:removeOne};
+module.exports = {removeOne: removeOne};

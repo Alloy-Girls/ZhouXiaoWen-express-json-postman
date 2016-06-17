@@ -4,7 +4,7 @@ function insertOne(req, res) {
   var itemOne = req.body;
 
   if (judgeItemType(itemOne)) {
-    var item = returnInsertOne(itemOne);
+    var item = readyInsertOne(itemOne);
     var dataObject = publicMethod.fileOnlyRead();
 
     dataObject.push(item);
@@ -16,8 +16,10 @@ function insertOne(req, res) {
     res.sendStatus(400);
   }
 }
-function returnInsertOne(itemOne) {
+
+function readyInsertOne(itemOne) {
   var insertOne = {};
+
   ID += 1;
   insertOne.id = ID;
   insertOne.barcode = itemOne.barcode;

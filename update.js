@@ -18,11 +18,9 @@ function updateOne(req, res) {
   else {
     res.sendStatus(400);
   }
-
 }
 
 function isExitUpdate(id, items, itemOneInfo) {
-
   for (var i = 0; i < items.length; i++) {
     if (id === items[i].id) {
       items[i].barcode = itemOneInfo.barcode;
