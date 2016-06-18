@@ -10,7 +10,7 @@ function removeOne(req, res) {
     res.sendStatus(404);
   }
   else {
-    publicMethod.fileWrite(req, res, dataObject);
+    publicMethod.fileWrite(dataObject);
     res.sendStatus(204);
   }
 }

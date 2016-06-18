@@ -8,7 +8,7 @@ function updateOne(req, res) {
     var dataObject = publicMethod.fileOnlyRead();
 
     if (isExitUpdate(id, dataObject, itemOneInfo)) {
-      publicMethod.fileWrite(req, res, dataObject);
+      publicMethod.fileWrite(dataObject);
       res.status(200).json(itemOneInfo);
     }
     else {

@@ -8,8 +8,7 @@ function insertOne(req, res) {
     var dataObject = publicMethod.fileOnlyRead();
 
     dataObject.push(item);
-    publicMethod.fileWrite(req, res, dataObject);
-
+    publicMethod.fileWrite(dataObject);
     res.status(200).json(item);
   }
   else {
