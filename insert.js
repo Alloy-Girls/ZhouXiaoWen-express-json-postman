@@ -5,10 +5,10 @@ function insertOne(req, res) {
 
   if (judgeItemType(itemOne)) {
     var item = readyInsertOne(itemOne);
-    var dataObject = publicMethod.fileOnlyRead();
+    var fileData = publicMethod.fileOnlyRead();
 
-    dataObject.push(item);
-    publicMethod.fileWrite(dataObject);
+    fileData.push(item);
+    publicMethod.fileWrite(fileData);
     res.status(200).json(item);
   }
   else {

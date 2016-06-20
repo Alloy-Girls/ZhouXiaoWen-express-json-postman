@@ -2,12 +2,12 @@ var fs = require('fs');
 
 const FILE_NAME = 'items.json';
 
-function fileWrite(dataObject) {
+function fileWrite(object) {
 
   fs.readFile(FILE_NAME, "UTF-8", function (err) {
     if (err) throw err;
 
-    fs.writeFile(FILE_NAME, JSON.stringify(dataObject), function (err) {
+    fs.writeFile(FILE_NAME, JSON.stringify(object), function (err) {
       if (err) throw err;
     });
   });
@@ -40,7 +40,5 @@ function getDataJsonObject(string) {
 module.exports = {
   fileWrite: fileWrite,
   fileOnlyRead: fileOnlyRead,
-  getDataJsonStr: getDataJsonStr,
-  getDataJsonObject: getDataJsonObject,
   fileCreate: fileCreate
 };

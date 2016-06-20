@@ -5,10 +5,10 @@ function updateOne(req, res) {
   var itemOneInfo = req.body;
 
   if (judgeItemType(itemOneInfo)) {
-    var dataObject = publicMethod.fileOnlyRead();
+    var fileData = publicMethod.fileOnlyRead();
 
-    if (isExitUpdate(id, dataObject, itemOneInfo)) {
-      publicMethod.fileWrite(dataObject);
+    if (isExitUpdate(id, fileData, itemOneInfo)) {
+      publicMethod.fileWrite(fileData);
       res.status(200).json(itemOneInfo);
     }
     else {

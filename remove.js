@@ -2,15 +2,15 @@ var publicMethod = require('./public');
 
 function removeOne(req, res) {
   var id = parseInt(req.params.id);
-  var dataObject = publicMethod.fileOnlyRead();
-  var dataBefore = dataObject.length;
-  var notRemoveItems = returnNotRemove(id, dataObject);
+  var fileData = publicMethod.fileOnlyRead();
+  var fileDataLength = fileData.length;
+  var notRemoveItems = returnNotRemove(id, fileData);
 
-  if (notRemoveItems.length === dataBefore) {
+  if (notRemoveItems.length === fileDataLength) {
     res.sendStatus(404);
   }
   else {
-    publicMethod.fileWrite(dataObject);
+    publicMethod.fileWrite(fileData);
     res.sendStatus(204);
   }
 }

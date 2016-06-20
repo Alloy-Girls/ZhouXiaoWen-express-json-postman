@@ -1,15 +1,15 @@
 var publicMethod = require('./public');
 
 function findAll(req, res) {
-  var dataObject = publicMethod.fileOnlyRead();
-  res.status(200).json(dataObject);
+  var fileData = publicMethod.fileOnlyRead();
+  res.status(200).json(fileData);
 }
 
 function findOne(req, res) {
   var id = parseInt(req.params.id);
 
-  var dataObject = publicMethod.fileOnlyRead();
-  var findItem = returnFindOne(id, dataObject);
+  var fileData = publicMethod.fileOnlyRead();
+  var findItem = returnFindOne(id, fileData);
 
   if (findItem) {
     res.status(200).json(findItem);
