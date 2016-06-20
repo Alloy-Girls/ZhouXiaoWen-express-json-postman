@@ -5,8 +5,10 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());  //body-parser 解析json格式数据
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+var server = app.listen(3000, function () {
+  console.log('Example app listening at http://%s:%s',
+    server.address().address,
+    server.address().port);
 });
 
 ID = 0;
