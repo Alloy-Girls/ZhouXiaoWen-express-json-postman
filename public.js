@@ -27,8 +27,13 @@ function fileCreate() {
   });
 }
 
-function fileOnlyRead() {
-  return getDataJsonObject(fs.readFileSync(FILE_NAME, 'utf-8'));
+function fileOnlyRead(callback) {
+  //return getDataJsonObject(fs.readFileSync(FILE_NAME, 'utf-8'));
+  fs.readFile(FILE_NAME, function (err, data) {
+    if (err)
+      return next(err);
+    callback(getDataJsonObject(data));
+  })
 }
 
 function getDataJsonStr(object) {
