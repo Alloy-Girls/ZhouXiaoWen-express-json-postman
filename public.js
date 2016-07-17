@@ -2,26 +2,33 @@ var fs = require('fs');
 
 const FILE_NAME = 'items.json';
 
+var EMPTY_STORE = {
+  nextId: 1,
+  items: []
+};
+
 function fileWrite(object) {
 
   fs.readFile(FILE_NAME, "UTF-8", function (err) {
     if (err) throw err;
 
-    fs.writeFile(FILE_NAME, JSON.stringify(object), function (err) {
+    fs.writeFile(FILE_NAME, getDataJsonStr(object), function (err) {
       if (err) throw err;
     });
   });
 }
 
 function fileCreate() {
-
-  fs.open(FILE_NAME, 'w', function (err, fd) {
-    if(err) throw err;
-    var dataObject = [];
-    fs.writeFile(FILE_NAME, getDataJsonStr(dataObject), function (err) {
-      if (err) throw err;
-      console.log('create file!');
-    });
+  fs.exists(FILE_NAME, function (exists) {
+    if (!exists) {
+      fs.open(FILE_NAME, "a", function (err, fd) {
+        if (err)  throw err;
+        else {
+          fs.writeFileSync(FILE_NAME, getDataJsonStr(EMPTY_STORE));
+          console.log('create file!');
+        }
+      });
+    }
   });
 }
 

@@ -1,7 +1,7 @@
-##**How to use an express application**
+#**How to use an express application**
 ===========================================
 
-### You may need to install ‵body-parser‵ and `nodemon`
+### You may need to install `body-parser` and `nodemon`
 
 ```
 npm install  body-parser --save
