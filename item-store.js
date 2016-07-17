@@ -1,15 +1,13 @@
 var publicMethod = require('./public');
 
-function findAll() {
+function findAll(callback) {
   var fileData = publicMethod.fileOnlyRead();
-
-  return fileData.items;
+  callback(null, fileData.items);
 }
 
-function findOne(id) {
+function findOne(id, callback) {
   var fileData = publicMethod.fileOnlyRead();
-
-  return returnFindOne(id, fileData.items);
+  callback(null, returnFindOne(id, fileData.items));
 }
 
 function returnFindOne(id, items) {
@@ -20,15 +18,14 @@ function returnFindOne(id, items) {
   }
 }
 
-function insertOne(itemOne) {
+function insertOne(itemOne, callback) {
   var fileData = publicMethod.fileOnlyRead();
   var item = readyInsertOne(itemOne, fileData.nextId);
 
   fileData.items.push(item);
   fileData.nextId += 1;
   publicMethod.fileWrite(fileData);
-
-  return item;
+  callback(null, item);
 }
 
 function readyInsertOne(itemOne, id) {
@@ -42,17 +39,17 @@ function readyInsertOne(itemOne, id) {
   return insertOne;
 }
 
-function removeOne(id) {
+function removeOne(id, callback) {
   var fileData = publicMethod.fileOnlyRead();
   var fileDataLength = fileData.items.length;
   var notRemoveLength = returnCurrent(id, fileData.items).length;
 
   if (notRemoveLength === fileDataLength) {
-    return false;
+    callback(null, false);
   }
   else {
     publicMethod.fileWrite(fileData);
-    return true;
+    callback(null, true);
   }
 }
 
@@ -67,13 +64,17 @@ function returnCurrent(id, items) {
   return items;
 }
 
-function updateOne(id, itemOne) {
+function updateOne(id, itemOne, callback) {
   var fileData = publicMethod.fileOnlyRead();
 
   if (isExitUpdate(id, fileData.items, itemOne)) {
     publicMethod.fileWrite(fileData);
-    return true;
+    callback(null, true);
   }
+  else {
+    callback(null, false);
+  }
+
 }
 
 function isExitUpdate(id, items, itemOneInfo) {

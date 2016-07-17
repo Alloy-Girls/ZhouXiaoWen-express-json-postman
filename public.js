@@ -8,14 +8,9 @@ var EMPTY_STORE = {
 };
 
 function fileWrite(object) {
-
-  fs.readFile(FILE_NAME, "UTF-8", function (err) {
-    if (err) throw err;
-
     fs.writeFile(FILE_NAME, getDataJsonStr(object), function (err) {
       if (err) throw err;
     });
-  });
 }
 
 function fileCreate() {
