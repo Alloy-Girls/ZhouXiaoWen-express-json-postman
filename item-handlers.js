@@ -2,7 +2,6 @@ var itemStore = require('./item-store');
 
 function findItem(req, res, next) {
   var id = parseInt(req.params.id);
-
   itemStore.findOne(id, function (err, findItem) {
     if (err) return next(err);
     if (findItem) {
@@ -24,7 +23,6 @@ function findAllItems(req, res, next) {
 function insertItem(req, res, next) {
   var itemOne = req.body;
   if (judgeItemType(itemOne)) {
-    // var item = itemStore.insertOne(itemOne);
     itemStore.insertOne(itemOne, function (err, item) {
       if (err) return next(err);
       res.status(200).json(item);
@@ -37,7 +35,6 @@ function insertItem(req, res, next) {
 
 function removeItem(req, res, next) {
   var id = parseInt(req.params.id);
-
   itemStore.removeOne(id, function (err, removed) {
     if (err) return next(err);
     if (removed) {
@@ -52,7 +49,6 @@ function removeItem(req, res, next) {
 function updateItem(req, res, next) {
   var id = parseInt(req.params.id);
   var itemOne = req.body;
-
   if (judgeItemType(itemOne)) {
     itemStore.updateOne(id, itemOne, function (err, updatedFlag) {
       if (err) return next(err);

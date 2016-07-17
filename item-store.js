@@ -23,7 +23,6 @@ function returnFindOne(id, items) {
 function insertOne(itemOne, callback) {
   publicMethod.fileOnlyRead(function (fileData) {
     var item = readyInsertOne(itemOne, fileData.nextId);
-
     fileData.items.push(item);
     fileData.nextId += 1;
     publicMethod.fileWrite(fileData);
@@ -38,7 +37,6 @@ function readyInsertOne(itemOne, id) {
   insertOne.name = itemOne.name;
   insertOne.unit = itemOne.unit;
   insertOne.price = itemOne.price;
-
   return insertOne;
 }
 
@@ -46,7 +44,6 @@ function removeOne(id, callback) {
   publicMethod.fileOnlyRead(function (fileData) {
     var fileDataLength = fileData.items.length;
     var notRemoveLength = returnCurrent(id, fileData.items).length;
-
     if (notRemoveLength === fileDataLength) {
       callback(null, false);
     }
@@ -64,7 +61,6 @@ function returnCurrent(id, items) {
       break;
     }
   }
-
   return items;
 }
 
@@ -87,7 +83,6 @@ function isExitUpdate(id, items, itemOneInfo) {
       items[i].name = itemOneInfo.name;
       items[i].unit = itemOneInfo.unit;
       items[i].price = itemOneInfo.price;
-
       return true;
     }
   }

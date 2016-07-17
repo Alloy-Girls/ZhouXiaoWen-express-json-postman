@@ -1,9 +1,8 @@
 var itemHandlers = require('./item-handlers');
-
-var express = require('express');
-var router = express();
-
 var bodyParser = require('body-parser');
+var express = require('express');
+
+var router = express();
 router.use(bodyParser.json());  //body-parser 解析json格式数据
 
 router.post('/', itemHandlers.insertItem);
