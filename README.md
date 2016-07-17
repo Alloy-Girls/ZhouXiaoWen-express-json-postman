@@ -1,27 +1,12 @@
-This is a project!
+##**How to use an express application**
 ===========================================
 
-Steps
------
-
-### create directory, config files and download deps
+### You may need to install ‵body-parser‵ and `nodemon`
 
 ```
-mkdir myapp
-cd myapp
-npm init -y
-npm install express --save
+npm install  body-parser --save
+npm install -g nodemon --save
 ```
-
-### use `nodemon` to auto-reload
-
-```
-npm install -g nodemon
-```
-
-### write code
-
-The code is already in this project
 
 ### run code
 
@@ -35,7 +20,7 @@ or
 nodemon index.js
 ```
 
-### visit
+###
 
 ```
 curl http://localhost:3000/items

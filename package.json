@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Alloy-Girls/ZhouXiaoWen-express-json-postman/issues"
   },
-  "homepage": "https://github.com/Alloy-Girls/ZhouXiaoWen-express-json-postman#readme"
+  "homepage": "https://github.com/Alloy-Girls/ZhouXiaoWen-express-json-postman#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2"
+  }
 }
